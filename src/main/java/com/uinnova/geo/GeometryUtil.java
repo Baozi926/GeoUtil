@@ -1,35 +1,71 @@
 package com.uinnova.geo;
 
+import cn.hutool.core.util.BooleanUtil;
 import com.uinnova.geo.exception.GeoException;
+import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Polygon;
-import org.locationtech.jts.operation.linemerge.LineMerger;
 import org.locationtech.jts.operation.union.UnaryUnionOp;
+import org.locationtech.jts.operation.valid.IsValidOp;
+import org.opengis.feature.simple.SimpleFeatureType;
+import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.type.PropertyDescriptor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author 蔡惠民
  * @date 2021/5/7 10:42
  */
 
-public class GeometryOptimizeUtils {
+public class GeometryUtil {
 
-    private GeometryOptimizeUtils() {
+    private GeometryUtil() {
         throw new IllegalStateException("Utility class");
     }
 
+    /**
+     * 将featureType转换成 SimpleFeatureType
+     * @param featureType
+     *
+     * */
+    public static SimpleFeatureType featureTypeToSimpleFeatureType(FeatureType featureType) {
+
+        SimpleFeatureTypeBuilder ftBuilder = new SimpleFeatureTypeBuilder();
+
+        //根据featureType的每个字段定义重新给simpleFeatureType
+        for (PropertyDescriptor descriptor : featureType.getDescriptors()) {
+            if (descriptor.getName() != null) {
+                ftBuilder.add(descriptor.getName().toString(), descriptor.getType().getBinding());
+            }
+        }
+        //scheme的名称，无用但必要
+        ftBuilder.setName(featureType.getName());
+        //坐标系
+        ftBuilder.setCRS(featureType.getCoordinateReferenceSystem());
+        //设置默认的geometry字段
+        if (featureType.getGeometryDescriptor() != null && featureType.getGeometryDescriptor().getName() != null) {
+            ftBuilder.setDefaultGeometry(featureType.getGeometryDescriptor().getName().toString());
+        }
+        return ftBuilder.buildFeatureType();
+    }
+
+
 
     /**
-     * 线融合
+     * 判断几何对象是不是合格的
+     *
+     * @param geometry 几何对象
+     * @author caihuimin
      */
-    public static List<Geometry> mergeLines(List<Geometry> geometryList) {
-        LineMerger lineMerger = new LineMerger();
-        lineMerger.add(geometryList);
-        Collection<Geometry> mergerLineStrings = lineMerger.getMergedLineStrings();
-        return Arrays.asList(mergerLineStrings.toArray(new Geometry[]{}));
+    public Boolean isValid(Geometry geometry) {
+        IsValidOp isValidOp = new IsValidOp(geometry);
+        return BooleanUtil.isTrue(isValidOp.isValid());
     }
 
     /**
@@ -41,7 +77,7 @@ public class GeometryOptimizeUtils {
             return UnaryUnionOp.union(geometries);
         } catch (Exception e) {
             //如果融合不了，就直接合并成一个多面
-            return GeometryOptimizeUtils.toMulti(geometries);
+            return GeometryUtil.toMulti(geometries);
         }
 
     }
@@ -83,25 +119,6 @@ public class GeometryOptimizeUtils {
         }
 
         return gf.buildGeometry(singleGeometryList);
-
-
-//        if (CharSequenceUtil.equals("MultiPolygon", firstGeometry.getGeometryType())) {
-//            return gf.createMultiPolygon(singleGeometryList.toArray(new Polygon[]{}));
-//        } else if (CharSequenceUtil.equals("Polygon", firstGeometry.getGeometryType())) {
-//            return gf.createMultiPolygon(singleGeometryList.toArray(new Polygon[]{}));
-//        } else if (CharSequenceUtil.equals("MultiLineString", firstGeometry.getGeometryType())) {
-//            return gf.createMultiLineString(singleGeometryList.toArray(new LineString[]{}));
-//        } else if (CharSequenceUtil.equals("LineString", firstGeometry.getGeometryType())) {
-//            return ;
-//        } else if (CharSequenceUtil.equals("MultiPoint", firstGeometry.getGeometryType())) {
-//            return gf.createMultiPoint(singleGeometryList.toArray(new Point[]{}));
-//        } else if (CharSequenceUtil.equals("Point", firstGeometry.getGeometryType())) {
-//            return gf.createMultiPoint(singleGeometryList.toArray(new Point[]{}));
-//        } else {
-//            throw new GeoException("invalid geometryType");
-//        }
-
-
     }
 
     /**
@@ -124,6 +141,8 @@ public class GeometryOptimizeUtils {
             return geom; // In my case, I only care about polygon / multipolygon geometries
         }
     }
+
+
 
 
 }

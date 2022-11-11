@@ -82,7 +82,7 @@ public class ShpUtil {
         //如果本身就是wgs84，就不需要转换，在geotool 27版本，如果坐标系本身是GCS_WGS_1984，进行坐标转换会报错，所以就直接返回了
         if (CharSequenceUtil.equals("GCS_WGS_1984",
                 source.getSchema().getCoordinateReferenceSystem().getCoordinateSystem().getName().getCode())) {
-            return GeoUtil.removeNullGeometryItem(source.getFeatures());
+            return FeatureCollectionUtil.removeNullGeometryItem(source.getFeatures());
         }
 
         Query query = new Query();
@@ -100,11 +100,11 @@ public class ShpUtil {
 
             iterator.close();
 
-            return GeoUtil.removeNullGeometryItem(source.getFeatures(query));
+            return FeatureCollectionUtil.removeNullGeometryItem(source.getFeatures(query));
         } catch (Exception e) {
             LOGGER.warning("transformation error, will return the origin!");
             //如果投影转换异常，就直接返回没有投影的结果
-            return GeoUtil.removeNullGeometryItem(source.getFeatures());
+            return FeatureCollectionUtil.removeNullGeometryItem(source.getFeatures());
 
         }
 

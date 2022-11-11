@@ -3,8 +3,6 @@ import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.CharsetUtil;
 import com.uinnova.geo.*;
 import com.uinnova.geo.exception.GeoException;
-import com.uinnova.geo.json.GeojsonOptimizeUtil;
-import com.uinnova.geo.json.JsonGeomTranslator;
 import org.geotools.data.collection.ListFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.feature.FeatureCollection;
@@ -49,13 +47,13 @@ class TestGeojson {
 
 
     @Test
-    void readGeojson() throws IOException {
+    void readGeojson() throws GeoException {
 
         File input = new File("." + File.separator + "data" + File.separator + "Railway.geojson");
 
         String geojsonStr = FileUtil.readString(input, CharsetUtil.UTF_8);
 
-        FeatureCollection featureCollection = JsonGeomTranslator.jsonString2Features(geojsonStr, 7);
+        FeatureCollection featureCollection = GeoJsonUtil.fromJson(geojsonStr, 7);
 
 
         Assertions.assertTrue(featureCollection.size() > 0);
@@ -310,7 +308,7 @@ class TestGeojson {
 
         SimpleFeatureCollection simpleFeatureCollection = GeoJsonUtil.fromFile(input);
 
-        simpleFeatureCollection = GeojsonOptimizeUtil.mergeByField(simpleFeatureCollection, "kind", "MultiLineString", "String");
+        simpleFeatureCollection = FeatureCollectionUtil.mergeByField(simpleFeatureCollection, "kind", "MultiLineString", "String");
 
 
         FileUtil.del(output);
@@ -606,7 +604,7 @@ class TestGeojson {
 
         FeatureType featureType = featureCollection.getSchema();
 
-        SimpleFeatureType simpleFeatureType = GeoUtil.featureTypeToSimpleFeatureType(featureType);
+        SimpleFeatureType simpleFeatureType = GeometryUtil.featureTypeToSimpleFeatureType(featureType);
         List<SimpleFeature> features = new ArrayList<>();
 
         FeatureIterator featureIterator = featureCollection.features();
@@ -738,13 +736,13 @@ class TestGeojson {
                     "        \"features\": []\n" +
                     "}";
 
-            GeoUtil.copy(GeoJsonUtil.fromJsonAsSimpleFeatureCollection(geojson));
+            FeatureCollectionUtil.copy(GeoJsonUtil.fromJsonAsSimpleFeatureCollection(geojson));
         });
 
         Assertions.assertDoesNotThrow(() -> {
             File gcj02 = new File("." + File.separator + "data" + File.separator + "1.geojson");
 
-            GeoUtil.copy(
+            FeatureCollectionUtil.copy(
                     GeoJsonUtil.fromJsonAsSimpleFeatureCollection(
                             FileUtil.readString(
                                     gcj02,

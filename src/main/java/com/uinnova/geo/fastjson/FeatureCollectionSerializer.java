@@ -4,10 +4,11 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.uinnova.geo.GeoConstants;
+import com.uinnova.geo.GeoJsonUtil;
 import com.uinnova.geo.exception.GeoException;
-import com.uinnova.geo.json.JsonGeomTranslator;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.util.logging.Logging;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class FeatureCollectionSerializer extends JsonSerializer<FeatureCollectio
     @Override
     public void serialize(FeatureCollection featureCollection, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         try {
-            jsonGenerator.writeRawValue(JsonGeomTranslator.features2jsonString(featureCollection, GeoConstants.GEOJSON_COORDINATES_ACCURACY));
+            jsonGenerator.writeRawValue(GeoJsonUtil.toString(featureCollection, GeoConstants.GEOJSON_COORDINATES_ACCURACY));
         } catch (GeoException e) {
             LOGGER.log(Level.WARNING, "FeatureCollectionSerializer parse error", e);
         }

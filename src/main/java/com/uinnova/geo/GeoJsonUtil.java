@@ -6,8 +6,6 @@ import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.NumberUtil;
 import com.uinnova.geo.exception.GeoException;
-import com.uinnova.geo.json.GeojsonOptimizeUtil;
-import com.uinnova.geo.json.JsonGeomTranslator;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.DataUtilities;
@@ -34,6 +32,8 @@ import java.util.Map;
 /**
  * @author 蔡惠民
  * @date 2022/9/28 10:03
+ * <p>
+ * 处理geojson的辅助类
  */
 public class GeoJsonUtil {
 
@@ -134,9 +134,9 @@ public class GeoJsonUtil {
         String geometryType = featureCollection.getSchema().getGeometryDescriptor().getType().getBinding().getSimpleName();
         featureCollection.getSchema().getDescriptor("mergeField");
 
-        FeatureCollection result = GeojsonOptimizeUtil.mergeByField(featureCollection, mergeField, getMultiGeometryType(geometryType), mergeFieldType);
+        FeatureCollection result = FeatureCollectionUtil.mergeByField(featureCollection, mergeField, getMultiGeometryType(geometryType), mergeFieldType);
 
-        return JsonGeomTranslator.features2jsonString(result, GeoConstants.GEOJSON_COORDINATES_ACCURACY);
+        return toString(result, GeoConstants.GEOJSON_COORDINATES_ACCURACY);
 
     }
 
@@ -174,7 +174,6 @@ public class GeoJsonUtil {
      */
     public static void roughCheck(String geojsonStr) throws GeoException {
         fromJson(geojsonStr);
-
     }
 
 
@@ -198,10 +197,14 @@ public class GeoJsonUtil {
 
         String geometryType = featureCollection.getSchema().getGeometryDescriptor().getType().getBinding().getSimpleName();
 
-        FeatureCollection result = GeojsonOptimizeUtil.union(DataUtilities.collection(featureCollection), getMultiGeometryType(geometryType));
+        FeatureCollection result = FeatureCollectionUtil.union(DataUtilities.collection(featureCollection), getMultiGeometryType(geometryType));
 
         return toString(result);
 
+    }
+
+    public static String toString(FeatureCollection featureCollection) throws GeoException {
+        return toString(featureCollection, GeoConstants.GEOJSON_COORDINATES_ACCURACY);
     }
 
     /**
@@ -209,7 +212,7 @@ public class GeoJsonUtil {
      *
      * @author caihuimin
      */
-    public static String toString(FeatureCollection featureCollection) throws GeoException {
+    public static String toString(FeatureCollection featureCollection, int decimals) throws GeoException {
         //如果是空值，就返回一个空的featureCollection
         if (featureCollection == null || featureCollection.size() == 0) {
             return "{\n" +
@@ -219,7 +222,7 @@ public class GeoJsonUtil {
         }
 
 
-        FeatureJSON featureJSON = new FeatureJSON(new GeometryJSON(GeoConstants.GEOJSON_COORDINATES_ACCURACY));
+        FeatureJSON featureJSON = new FeatureJSON(new GeometryJSON(decimals));
 
         if (featureCollection.getSchema() != null) {
             boolean geometryLess = featureCollection.getSchema().getGeometryDescriptor() == null;
@@ -244,7 +247,7 @@ public class GeoJsonUtil {
      */
     public static String validate(String geojsonString) throws IOException, GeoException {
         FeatureCollection featureCollection = fromJson(geojsonString);
-        FeatureCollection validateFeatures = GeoUtil.validate(featureCollection);
+        FeatureCollection validateFeatures = FeatureCollectionUtil.validate(featureCollection);
         return toString(validateFeatures);
     }
 
@@ -256,7 +259,7 @@ public class GeoJsonUtil {
      * @author caihuimin
      */
     public static String validate(FeatureCollection featureCollection) throws IOException, GeoException {
-        FeatureCollection validateFeatures = GeoUtil.validate(featureCollection);
+        FeatureCollection validateFeatures = FeatureCollectionUtil.validate(featureCollection);
         return toString(validateFeatures);
     }
 
@@ -351,7 +354,7 @@ public class GeoJsonUtil {
 
         SimpleFeatureCollection simpleFeatureCollection = GeoJsonUtil.fromJsonAsSimpleFeatureCollection(geojsonStr);
 
-        SimpleFeatureCollection featureCollectionWithGeometryNullRemoved = GeoUtil.removeNullGeometryItem(simpleFeatureCollection);
+        SimpleFeatureCollection featureCollectionWithGeometryNullRemoved = FeatureCollectionUtil.removeNullGeometryItem(simpleFeatureCollection);
 
         return GeoJsonUtil.toString(featureCollectionWithGeometryNullRemoved);
 
