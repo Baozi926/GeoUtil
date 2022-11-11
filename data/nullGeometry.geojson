@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "osm_id": 521981555,
+        "name": "",
+        "type": ""
+      },
+      "id": "buildings.3154"
+    },  {
+      "type": "Feature",
+      "geometry": {
+
+
+      },
+      "properties": {
+        "osm_id": 521981555,
+        "name": "",
+        "type": ""
+      },
+      "id": "buildings.3154"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point"
+      },
+      "properties": {
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "osm_id": 521981555,
+        "name": "",
+        "type": ""
+      },
+      "id": "buildings.3154"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          [
+            108.48802648440403,
+            30.245780930003832
+          ],
+          [
+            108.49263483217862,
+            30.26376836604514
+          ],
+          [
+            108.47504579956808,
+            30.275631646547936
+          ],
+          [
+            108.46301352214431,
+            30.268425210134822
+          ],
+          [
+            108.46612217598584,
+            30.255775987059792
+          ]
+        ],
+        "type": "LineString"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          123,
+          45,
+          1
+        ]
+      },
+      "properties": {
+        "osm_id": 521981555,
+        "name": "",
+        "type": ""
+      },
+      "id": "buildings.3154"
+    }
+  ]
+}

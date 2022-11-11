@@ -1,0 +1,37 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                113.6331231313131,
+                34.721912313131332
+              ],
+              [
+                113.6331,
+                34.7219
+              ],
+              [
+                113.6332,
+                34.7219
+              ],
+              [
+                113.8,
+                34.9
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "height": 43.0
+      },
+      "id": "buildings.3154"
+    }
+  ]
+}

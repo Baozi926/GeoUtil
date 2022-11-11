@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "aa",
+        "coordinates": [
+          112.860486,
+          24.380747
+        ]
+      },
+      "properties": {
+        "elementID": "1"
+      },
+      "id": "fid-1eeaebd5_18027d5c30b_-61ba"
+    }
+
+  ]
+}

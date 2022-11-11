@@ -1,0 +1,12 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+
+      },
+      "properties": {
+        "osm_id": 521981555,
+        "name": "",
+        "type": ""

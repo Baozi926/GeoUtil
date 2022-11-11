@@ -1,0 +1,103 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.81993889808655,
+            40.7999297080637
+          ],
+          [
+            -73.81983026862144,
+            40.79992057116809
+          ],
+          [
+            -73.81969079375267,
+            40.79987082582534
+          ],
+          [
+            -73.81917044520378,
+            40.79958047471365
+          ],
+          [
+            -73.81896123290062,
+            40.799460679129595
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "minor_road",
+        "kind_detail": "residential",
+        "name": "Powells Cove Blvd",
+        "name:en": "Powells Cove Blvd.",
+        "min_zoom": 12,
+        "sort_rank": 360
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -73.82803246378899,
+              40.79929722887388
+            ],
+            [
+              -73.82793053984642,
+              40.7991408847744
+            ],
+            [
+              -73.82696092128754,
+              40.79763021632522
+            ],
+            [
+              -73.82674098014832,
+              40.79729010813617
+            ],
+            [
+              -73.82664307951927,
+              40.79713680506924
+            ]
+          ],
+          [
+            [
+              -73.82652372121811,
+              40.79713680506924
+            ],
+            [
+              -73.82686033844948,
+              40.79766067368996
+            ],
+            [
+              -73.82791310548782,
+              40.79929722887388
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "highway",
+        "kind_detail": "motorway",
+        "fclass": 2,
+        "name": "Bronx Whitestone Brg",
+        "name:en": "Bronx Whitestone Brg",
+        "ref": "I-678",
+        "network": "US:I",
+        "all_route_types": 1,
+        "shield_text": "678",
+        "all_shield_texts": "678",
+        "all_networks": "US:I",
+        "all_refs": "I-678",
+        "min_zoom": 6,
+        "sort_rank": 433,
+        "is_bridge": true,
+        "oneway": "yes"
+      }
+    }
+  ]
+}
