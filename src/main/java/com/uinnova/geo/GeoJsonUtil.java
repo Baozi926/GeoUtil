@@ -41,6 +41,14 @@ public class GeoJsonUtil {
         throw new IllegalStateException("Utility class");
     }
 
+    /**
+     *
+     * convert geojson string to geometry
+     * @param geometry
+     *
+     *
+     *
+     * */
     public static String geometry2GeoJson(Geometry geometry) throws IOException {
         GeometryJSON geometryJson = new GeometryJSON();
         StringWriter writer = new StringWriter();
@@ -50,6 +58,12 @@ public class GeoJsonUtil {
         return writer.toString();
     }
 
+    /**
+     * convert geometry to geojson string
+     * @param geojsonString geojson string
+     *
+     *
+     * */
     public static Geometry geoJson2Geometry(String geojsonString) throws IOException {
         if (geojsonString == null) {
             return null;
@@ -70,14 +84,13 @@ public class GeoJsonUtil {
      * @param decimals      精确到小数点后的位数
      */
     public static FeatureCollection<FeatureType, Feature> fromJson(String geojsonString, int decimals) throws GeoException {
-
         return (FeatureCollection) fromJsonAsSimpleFeatureCollection(geojsonString, decimals);
     }
 
 
     /**
      * 将geojson文件转换为要素集合，这个结果中是可以区分 Multi和Single的，但是fromJson那个方法会将所有 geometry类型统一成第一个要素的geometry类型，所以这个方法是优于fromJson，应优先使用
-     *
+     * get SimpleFeatureCollection from geojson file
      * @param inFile geojson 文件
      */
     public static SimpleFeatureCollection fromFile(File inFile) throws IOException {
@@ -95,6 +108,8 @@ public class GeoJsonUtil {
 
     /**
      * 将geojson对象转换为要素集合
+     * get featureCollection from geojson string
+     *
      */
     public static FeatureCollection<FeatureType, Feature> fromJson(String geojsonString) throws GeoException {
         return fromJson(geojsonString, GeoConstants.GEOJSON_COORDINATES_ACCURACY);
@@ -103,6 +118,8 @@ public class GeoJsonUtil {
 
     /**
      * 根据属性字段合并geojson
+     *
+     * merge by field
      *
      * @param geojsonStr                  geojson 的字符串
      * @param mergeField                  合并的属性

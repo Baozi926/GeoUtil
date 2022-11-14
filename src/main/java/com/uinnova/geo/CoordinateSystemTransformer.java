@@ -522,6 +522,8 @@ public class CoordinateSystemTransformer {
 
     /**
      * 转换featureCollection的坐标系
+     * transform the coordinate system of the featureCollection
+     *
      */
     public static SimpleFeatureCollection transform(SimpleFeatureCollection simpleFeatureCollection, String inputCRS, String outputCRS) {
 
