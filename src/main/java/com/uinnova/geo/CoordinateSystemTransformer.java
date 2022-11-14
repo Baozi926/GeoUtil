@@ -16,10 +16,7 @@ import java.util.List;
 
 /**
  * @author 蔡惠民
- * @date 2021/7/7 9:21
  * 坐标系转换的工具类
- *
- *
  */
 public class CoordinateSystemTransformer {
 
@@ -391,8 +388,8 @@ public class CoordinateSystemTransformer {
      * 百度坐标系 (BD-09) 与 火星坐标系 (GCJ-02)的转换
      * 即 百度 转 谷歌、高德
      *
-     * @param bd_lon
-     * @param bd_lat
+     * @param bd_lon longitude
+     * @param bd_lat latitude
      * @return Double[lon, lat]
      */
     public static Double[] BD09ToGCJ02(Double bd_lon, Double bd_lat) {
@@ -410,8 +407,8 @@ public class CoordinateSystemTransformer {
      * 火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的转换
      * 即谷歌、高德 转 百度
      *
-     * @param gcj_lon
-     * @param gcj_lat
+     * @param gcj_lon longitude
+     * @param gcj_lat latitude
      * @return Double[lon, lat]
      */
     public static Double[] GCJ02ToBD09(Double gcj_lon, Double gcj_lat) {
@@ -437,8 +434,8 @@ public class CoordinateSystemTransformer {
     /**
      * WGS84转GCJ02
      *
-     * @param wgs_lon
-     * @param wgs_lat
+     * @param wgs_lon lon
+     * @param wgs_lat lat
      * @return Double[lon, lat]
      */
     public static Double[] WGS84ToGCJ02(Double wgs_lon, Double wgs_lat) {
@@ -462,8 +459,8 @@ public class CoordinateSystemTransformer {
     /**
      * GCJ02转WGS84
      *
-     * @param gcj_lon
-     * @param gcj_lat
+     * @param gcj_lon lon
+     * @param gcj_lat lat
      * @return Double[lon, lat]
      */
     public static Double[] GCJ02ToWGS84(Double gcj_lon, Double gcj_lat) {
@@ -514,6 +511,11 @@ public class CoordinateSystemTransformer {
 
     /**
      * 转换featureCollection的坐标系
+     *
+     * @param input     input
+     * @param inputCRS  inputCRS
+     * @param outputCRS outputCRS
+     * @return SimpleFeatureCollection
      */
     public static SimpleFeatureCollection transform(FeatureCollection input, String inputCRS, String outputCRS) {
         return transform(DataUtilities.collection(input), inputCRS, outputCRS);
@@ -523,6 +525,11 @@ public class CoordinateSystemTransformer {
     /**
      * 转换featureCollection的坐标系
      * transform the coordinate system of the featureCollection
+     *
+     * @param simpleFeatureCollection     input
+     * @param inputCRS  inputCRS
+     * @param outputCRS outputCRS
+     * @return SimpleFeatureCollection
      *
      */
     public static SimpleFeatureCollection transform(SimpleFeatureCollection simpleFeatureCollection, String inputCRS, String outputCRS) {

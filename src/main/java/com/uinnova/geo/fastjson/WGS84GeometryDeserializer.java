@@ -1,7 +1,6 @@
 package com.uinnova.geo.fastjson;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -11,15 +10,14 @@ import org.locationtech.jts.geom.*;
 import java.io.IOException;
 
 /**
- * @Author 蔡惠民
- * @Date 2021/3/24 11:16
+ * @author 蔡惠民
  */
 public class WGS84GeometryDeserializer extends JsonDeserializer<Geometry> {
     private GeometryFactory gf = new GeometryFactory();
 
     @Override
     public Geometry deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException {
 
         ObjectCodec oc = jp.getCodec();
         JsonNode root = oc.readTree(jp);

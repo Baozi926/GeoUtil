@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 
 /**
  * @author 蔡惠民
- * @date 2022/11/11 13:59
  * 用于处理featureCollection的工具类
  */
 public class FeatureCollectionUtil {
@@ -146,8 +145,13 @@ public class FeatureCollectionUtil {
     /**
      * 根据属性合并
      *
-     * @param mergeField
-     * @param mergeField
+     * @param featureCollection featureCollection
+     * @param mergeField        mergeField
+     * @param geometryType      geometryType
+     * @param mergeFieldType    mergeFieldType
+     * @return SimpleFeatureCollection
+     * @throws GeoException    GeoException
+     * @throws SchemaException SchemaException
      */
     public static FeatureCollection mergeByField(FeatureCollection featureCollection, String mergeField, String geometryType, String mergeFieldType) throws GeoException, SchemaException {
         return mergeByField(DataUtilities.collection(featureCollection), mergeField, geometryType, mergeFieldType);
@@ -155,8 +159,19 @@ public class FeatureCollectionUtil {
 
     /**
      * 根据属性合并
+     *
+     * @param featureCollection featureCollection
+     * @param mergeField        mergeField
+     * @param geometryType      geometryType
+     * @param mergeFieldType    mergeFieldType
+     * @return SimpleFeatureCollection
+     * @throws GeoException    GeoException
+     * @throws SchemaException SchemaException
      */
-    public static SimpleFeatureCollection mergeByField(SimpleFeatureCollection featureCollection, String mergeField, String geometryType, String mergeFieldType) throws GeoException, SchemaException {
+    public static SimpleFeatureCollection mergeByField(SimpleFeatureCollection featureCollection,
+                                                       String mergeField,
+                                                       String geometryType,
+                                                       String mergeFieldType) throws GeoException, SchemaException {
 
 
         if (CharSequenceUtil.isEmpty(mergeField)) {
@@ -202,8 +217,6 @@ public class FeatureCollectionUtil {
                 iterator.close();
             }
         }
-
-
 
 
         final SimpleFeatureType type = DataUtilities.createType("Location", "geometry:" + geometryType + "," + mergeField + ":" + mergeFieldType);
@@ -427,6 +440,8 @@ public class FeatureCollectionUtil {
     /**
      * 拷贝 SimpleFeatureCollection
      *
+     * @param simpleFeatureCollection simpleFeatureCollection
+     * @return simpleFeatureCollection
      * @author caihuimin
      */
     public static SimpleFeatureCollection copy(SimpleFeatureCollection simpleFeatureCollection) {
@@ -452,6 +467,8 @@ public class FeatureCollectionUtil {
     /**
      * 去除空值
      *
+     * @param featureCollection featureCollection
+     * @return simpleFeatureCollection
      * @author caihuimin
      */
     public static SimpleFeatureCollection removeNullGeometryItem(SimpleFeatureCollection featureCollection) {
@@ -487,6 +504,8 @@ public class FeatureCollectionUtil {
      * featureCollection
      *
      * @param featureCollection geojson的字符串
+     * @return FeatureCollection
+     * @throws GeoException GeoException
      * @author caihuimin
      */
     public static FeatureCollection validate(FeatureCollection featureCollection) throws GeoException {

@@ -2,7 +2,6 @@ package com.uinnova.geo.exception;
 
 /**
  * @author 蔡惠民
- * @date 2021/5/7 17:05
  */
 public class GeoException extends Exception {
 

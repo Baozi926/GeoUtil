@@ -52,4 +52,12 @@ String geojsonStr = ShpUtil.parseShpAs(input);
 
 
 
+##
+```
+mvn clean javadoc:jar deploy -P release
+
+
+```
+
+
 

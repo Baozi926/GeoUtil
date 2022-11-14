@@ -1,6 +1,7 @@
 package com.uinnova.geo;
 
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.CharsetUtil;
 import com.uinnova.geo.exception.GeoException;
 import org.geotools.data.Query;
 import org.geotools.data.shapefile.ShapefileDataStore;
@@ -14,14 +15,12 @@ import org.opengis.referencing.FactoryException;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 /**
  * @author 蔡惠民
- * @date 2022/10/18 17:06
  * 针对shp文件的操作
  */
 public class ShpUtil {
@@ -40,6 +39,9 @@ public class ShpUtil {
      * 将shp文件解析为字符串
      *
      * @param file .shp文件
+     *
+     * @throws  GeoException see in msg
+     * @return geojson string
      */
     public static String parseShpAsString(File file) throws GeoException {
 
@@ -62,6 +64,9 @@ public class ShpUtil {
      *
      * 解析shp文件，并投影转换为经纬度坐标
      * @param file .shp文件
+     * @throws IOException io
+     * @throws FactoryException schema
+     * @return  SimpleFeatureCollection
      *
      * */
     public static SimpleFeatureCollection parseShp(File file) throws IOException, FactoryException {
@@ -72,7 +77,7 @@ public class ShpUtil {
         ShapefileDataStore dataStore = new ShapefileDataStore(file.toURI().toURL());
         dataStore.setFidIndexed(false);
         dataStore.setIndexed(false);
-        dataStore.setCharset(StandardCharsets.UTF_8);
+        dataStore.setCharset(CharsetUtil.CHARSET_UTF_8);
         SimpleFeatureSource source = dataStore.getFeatureSource(dataStore.getTypeNames()[0]);
 
         Filter filter = Filter.INCLUDE; // ECQL.toFilter("BBOX(THE_GEOM, 10,20,30,40)")

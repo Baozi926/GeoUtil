@@ -2,7 +2,6 @@ package com.uinnova.geo;
 
 /**
  * @author 蔡惠民
- * @date 2022/10/28 14:53
  */
 public class GeoConstants {
 

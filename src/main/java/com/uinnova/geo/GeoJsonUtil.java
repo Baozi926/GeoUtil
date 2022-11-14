@@ -31,7 +31,6 @@ import java.util.Map;
 
 /**
  * @author 蔡惠民
- * @date 2022/9/28 10:03
  * <p>
  * 处理geojson的辅助类
  */
@@ -42,13 +41,12 @@ public class GeoJsonUtil {
     }
 
     /**
-     *
      * convert geojson string to geometry
-     * @param geometry
      *
-     *
-     *
-     * */
+     * @param geometry geometry
+     * @return geojson string
+     * @throws IOException IOException
+     */
     public static String geometry2GeoJson(Geometry geometry) throws IOException {
         GeometryJSON geometryJson = new GeometryJSON();
         StringWriter writer = new StringWriter();
@@ -60,10 +58,11 @@ public class GeoJsonUtil {
 
     /**
      * convert geometry to geojson string
+     *
      * @param geojsonString geojson string
-     *
-     *
-     * */
+     * @return geometry
+     * @throws IOException IOException
+     */
     public static Geometry geoJson2Geometry(String geojsonString) throws IOException {
         if (geojsonString == null) {
             return null;
@@ -82,6 +81,8 @@ public class GeoJsonUtil {
      *
      * @param geojsonString geojson 字符串
      * @param decimals      精确到小数点后的位数
+     * @return FeatureCollection
+     * @throws GeoException GeoException
      */
     public static FeatureCollection<FeatureType, Feature> fromJson(String geojsonString, int decimals) throws GeoException {
         return (FeatureCollection) fromJsonAsSimpleFeatureCollection(geojsonString, decimals);
@@ -91,7 +92,10 @@ public class GeoJsonUtil {
     /**
      * 将geojson文件转换为要素集合，这个结果中是可以区分 Multi和Single的，但是fromJson那个方法会将所有 geometry类型统一成第一个要素的geometry类型，所以这个方法是优于fromJson，应优先使用
      * get SimpleFeatureCollection from geojson file
+     *
      * @param inFile geojson 文件
+     * @return SimpleFeatureCollection
+     * @throws IOException IOException
      */
     public static SimpleFeatureCollection fromFile(File inFile) throws IOException {
 
@@ -110,6 +114,9 @@ public class GeoJsonUtil {
      * 将geojson对象转换为要素集合
      * get featureCollection from geojson string
      *
+     * @param geojsonString geojson string
+     * @return geojson string
+     * @throws GeoException see in msg
      */
     public static FeatureCollection<FeatureType, Feature> fromJson(String geojsonString) throws GeoException {
         return fromJson(geojsonString, GeoConstants.GEOJSON_COORDINATES_ACCURACY);
@@ -118,13 +125,16 @@ public class GeoJsonUtil {
 
     /**
      * 根据属性字段合并geojson
-     *
+     * <p>
      * merge by field
      *
      * @param geojsonStr                  geojson 的字符串
      * @param mergeField                  合并的属性
      * @param mergeFieldType              指定合并属性的类型
      * @param forceMergeField2NumberIfCan 是否在可以将合并属性转换成数字的时候转换成数字
+     * @return geojson string
+     * @throws GeoException    see in msg
+     * @throws SchemaException SchemaException
      * @author caihuimin
      */
     public static String mergeByField(String geojsonStr, String mergeField, String mergeFieldType, Boolean forceMergeField2NumberIfCan) throws GeoException, SchemaException {
@@ -162,6 +172,9 @@ public class GeoJsonUtil {
      *
      * @param geojsonStr geojson 的字符串
      * @param mergeField 合并的属性
+     * @return geojson string
+     * @throws GeoException    see in msg
+     * @throws SchemaException 读取schema 失败
      * @author caihuimin
      */
     public static String mergeByField(String geojsonStr, String mergeField) throws GeoException, SchemaException {
@@ -188,6 +201,7 @@ public class GeoJsonUtil {
      * 粗略效验 geojson 字符串
      *
      * @param geojsonStr geojson 的字符串
+     * @throws GeoException see in msg
      */
     public static void roughCheck(String geojsonStr) throws GeoException {
         fromJson(geojsonStr);
@@ -195,9 +209,11 @@ public class GeoJsonUtil {
 
 
     /**
-     * 将geojson合并一条数据 （如 n Polygon -> 1 MultiPolygon）
+     * 将geojson合并一条数据 （如 n Polygon 得到 1 MultiPolygon）
      *
      * @param geojsonStr geojson 的字符串
+     * @return geojson string
+     * @throws GeoException see in msg
      * @author caihuimin
      */
     public static String merge(String geojsonStr) throws GeoException {
@@ -227,6 +243,10 @@ public class GeoJsonUtil {
     /**
      * 将featureCollection转换成字符串
      *
+     * @param featureCollection featureCollection
+     * @param decimals          decimals
+     * @return geojson string
+     * @throws GeoException see in msg
      * @author caihuimin
      */
     public static String toString(FeatureCollection featureCollection, int decimals) throws GeoException {
@@ -260,9 +280,11 @@ public class GeoJsonUtil {
      * 校验geojson featureCollection
      *
      * @param geojsonString geojson的字符串
+     * @return geojson string
+     * @throws GeoException see in msg
      * @author caihuimin
      */
-    public static String validate(String geojsonString) throws IOException, GeoException {
+    public static String validate(String geojsonString) throws GeoException {
         FeatureCollection featureCollection = fromJson(geojsonString);
         FeatureCollection validateFeatures = FeatureCollectionUtil.validate(featureCollection);
         return toString(validateFeatures);
@@ -273,9 +295,11 @@ public class GeoJsonUtil {
      * 校验geojson featureCollection
      *
      * @param featureCollection featureCollection
+     * @return geojson string
+     * @throws GeoException GeoException
      * @author caihuimin
      */
-    public static String validate(FeatureCollection featureCollection) throws IOException, GeoException {
+    public static String validate(FeatureCollection featureCollection) throws GeoException {
         FeatureCollection validateFeatures = FeatureCollectionUtil.validate(featureCollection);
         return toString(validateFeatures);
     }
@@ -286,8 +310,10 @@ public class GeoJsonUtil {
      * @param geojsonFile geojson的文件
      * @param inputCRS    数据本身的坐标系
      * @param outputCRS   需要转换成的坐标系
+     * @return geojson string
+     * @throws GeoException see in msg
      */
-    public static String coordinateTransform(File geojsonFile, String inputCRS, String outputCRS) throws IOException, GeoException {
+    public static String coordinateTransform(File geojsonFile, String inputCRS, String outputCRS) throws GeoException {
         return coordinateTransform(FileUtil.readString(geojsonFile, CharsetUtil.UTF_8), inputCRS, outputCRS);
     }
 
@@ -297,8 +323,10 @@ public class GeoJsonUtil {
      * @param geojsonString geojson的字符串
      * @param inputCRS      数据本身的坐标系
      * @param outputCRS     需要转换成的坐标系
+     * @return geojson string
+     * @throws GeoException see in msg
      */
-    public static String coordinateTransform(String geojsonString, String inputCRS, String outputCRS) throws IOException, GeoException {
+    public static String coordinateTransform(String geojsonString, String inputCRS, String outputCRS) throws GeoException {
 
         FeatureCollection featureCollection = fromJson(geojsonString);
 
@@ -320,6 +348,8 @@ public class GeoJsonUtil {
      * 将geojson字符串读取成SimpleFeatureCollection
      *
      * @param geojsonStr geojson的字符串
+     * @return SimpleFeatureCollection
+     * @throws GeoException GeoException
      * @author caihuimin
      */
     public static SimpleFeatureCollection fromJsonAsSimpleFeatureCollection(String geojsonStr) throws GeoException {
@@ -330,6 +360,9 @@ public class GeoJsonUtil {
      * 将geojson字符串读取成SimpleFeatureCollection
      *
      * @param geojsonStr geojson的字符串
+     * @param decimals   decimals
+     * @return SimpleFeatureCollection
+     * @throws GeoException GeoException
      * @author caihuimin
      */
     public static SimpleFeatureCollection fromJsonAsSimpleFeatureCollection(String geojsonStr, int decimals) throws GeoException {
@@ -365,6 +398,8 @@ public class GeoJsonUtil {
      * 删除geometry为null的
      *
      * @param geojsonStr geojson的字符串
+     * @return geojson string
+     * @throws GeoException see in msg
      * @author caihuimin
      */
     public static String removeNullGeometryItem(String geojsonStr) throws GeoException {

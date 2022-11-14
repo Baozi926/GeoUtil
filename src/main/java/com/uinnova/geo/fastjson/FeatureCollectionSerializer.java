@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  * @author 蔡惠民
- * @date 2021/6/29 14:10
+ *
  */
 public class FeatureCollectionSerializer extends JsonSerializer<FeatureCollection> {
 

@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * @author 蔡惠民
- * @date 2021/5/7 10:42
  */
 
 public class GeometryUtil {
@@ -31,9 +30,10 @@ public class GeometryUtil {
 
     /**
      * 将featureType转换成 SimpleFeatureType
-     * @param featureType
      *
-     * */
+     * @param featureType  featureType
+     * @return SimpleFeatureType
+     */
     public static SimpleFeatureType featureTypeToSimpleFeatureType(FeatureType featureType) {
 
         SimpleFeatureTypeBuilder ftBuilder = new SimpleFeatureTypeBuilder();
@@ -56,11 +56,11 @@ public class GeometryUtil {
     }
 
 
-
     /**
      * 判断几何对象是不是合格的
      *
      * @param geometry 几何对象
+     * @return is valid ?
      * @author caihuimin
      */
     public Boolean isValid(Geometry geometry) {
@@ -71,6 +71,8 @@ public class GeometryUtil {
     /**
      * 融合
      * 例如，输入是多个polygon，输出是一个MultiPolygon
+     * @param  geometries 几何对象
+     * @return geometry
      */
     public static Geometry union(Collection<Geometry> geometries) {
         try {
@@ -84,6 +86,9 @@ public class GeometryUtil {
 
     /**
      * 转换为多[点/线/面]
+     *
+     * @param geometries geometries
+     * @return geometry
      */
     public static Geometry toMulti(Collection<Geometry> geometries) {
 
@@ -125,6 +130,9 @@ public class GeometryUtil {
      * fix geometry
      * 修复几何对象
      *
+     * @param geom geometry
+     * @return geometry
+     * @throws GeoException see in msg
      **/
     public static Geometry validate(Geometry geom) throws GeoException {
         if (geom instanceof Polygon || geom instanceof MultiPolygon) {
@@ -143,8 +151,6 @@ public class GeometryUtil {
             return geom; // In my case, I only care about polygon / multipolygon geometries
         }
     }
-
-
 
 
 }
