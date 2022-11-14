@@ -1,7 +1,7 @@
 # GeoUtil
 
 * 对geotools进行了封装，比直接使用geotools要更好用
-* 根据数据类型进行了分了，例如处理geojson数据，在GeoJsonUtil中找方法即可
+* 根据数据类型进行了分类，例如处理geojson数据，在GeoJsonUtil中找方法即可
 
 ## 相比于直接使用geotools的优点
 * 使用起来简单一些，例如如果你只需要处理geojson数据，使用geojsonUtil即可。
