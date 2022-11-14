@@ -29,7 +29,7 @@ import java.util.List;
  * 需要注意，输出的文件都需要在output文件夹下，因为这个文件夹不会上传到git
  */
 
-class TestGeojson {
+class TestAll {
 
     /**
      * 确保测试结果的目录被创建
@@ -53,10 +53,10 @@ class TestGeojson {
 
         String geojsonStr = FileUtil.readString(input, CharsetUtil.UTF_8);
 
-        FeatureCollection featureCollection = GeoJsonUtil.fromJson(geojsonStr, 7);
+        SimpleFeatureCollection simpleFeatureCollection = GeoJsonUtil.fromJsonAsSimpleFeatureCollection(geojsonStr, 7);
 
 
-        Assertions.assertTrue(featureCollection.size() > 0);
+        Assertions.assertTrue(simpleFeatureCollection.size() > 0);
 
     }
 

@@ -54,6 +54,10 @@ public class ShpUtil {
 
     }
 
+    public static SimpleFeatureCollection parseShp(String path) throws IOException, FactoryException {
+        return parseShp(new File(path));
+    }
+
     /***
      *
      * 解析shp文件，并投影转换为经纬度坐标
