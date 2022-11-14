@@ -1,4 +1,4 @@
-package com.uinnova.geo;
+package io.github.baozi926.geo;
 
 /**
  * @author 蔡惠民

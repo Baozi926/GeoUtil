@@ -1,4 +1,4 @@
-package com.uinnova.geo.fastjson;
+package io.github.baozi926.geo.fastjson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;

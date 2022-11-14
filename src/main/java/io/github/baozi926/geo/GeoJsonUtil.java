@@ -1,11 +1,11 @@
-package com.uinnova.geo;
+package io.github.baozi926.geo;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.NumberUtil;
-import com.uinnova.geo.exception.GeoException;
+import io.github.baozi926.geo.exception.GeoException;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.DataUtilities;

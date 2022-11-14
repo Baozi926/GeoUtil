@@ -1,10 +1,10 @@
-package com.uinnova.geo.fastjson;
+package io.github.baozi926.geo.fastjson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.uinnova.geo.GeoJsonUtil;
-import com.uinnova.geo.exception.GeoException;
+import io.github.baozi926.geo.GeoJsonUtil;
+import io.github.baozi926.geo.exception.GeoException;
 import org.geotools.feature.FeatureCollection;
 
 import java.io.IOException;

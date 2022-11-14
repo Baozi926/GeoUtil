@@ -1,11 +1,11 @@
-package com.uinnova.geo.fastjson;
+package io.github.baozi926.geo.fastjson;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.uinnova.geo.GeoConstants;
-import com.uinnova.geo.GeoJsonUtil;
-import com.uinnova.geo.exception.GeoException;
+import io.github.baozi926.geo.GeoConstants;
+import io.github.baozi926.geo.GeoJsonUtil;
+import io.github.baozi926.geo.exception.GeoException;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.util.logging.Logging;
 

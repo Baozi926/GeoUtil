@@ -1,4 +1,4 @@
-package com.uinnova.geo.fastjson;
+package io.github.baozi926.geo.fastjson;
 
 import java.io.IOException;
 

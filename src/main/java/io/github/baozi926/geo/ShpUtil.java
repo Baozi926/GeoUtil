@@ -1,8 +1,8 @@
-package com.uinnova.geo;
+package io.github.baozi926.geo;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.CharsetUtil;
-import com.uinnova.geo.exception.GeoException;
+import io.github.baozi926.geo.exception.GeoException;
 import org.geotools.data.Query;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureCollection;

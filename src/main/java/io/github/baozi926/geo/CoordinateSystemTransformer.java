@@ -1,4 +1,4 @@
-package com.uinnova.geo;
+package io.github.baozi926.geo;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.StrUtil;

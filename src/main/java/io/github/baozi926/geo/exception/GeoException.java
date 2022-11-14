@@ -1,4 +1,4 @@
-package com.uinnova.geo.exception;
+package io.github.baozi926.geo.exception;
 
 /**
  * @author 蔡惠民
