@@ -7,8 +7,8 @@
     <modelVersion>4.0.0</modelVersion>
     <url>https://github.com/Baozi926/GeoUtil</url>
     <groupId>io.github.baozi926</groupId>
-        <version>1.0-SNAPSHOT</version>
-<!--    <version>1.0.0</version>-->
+    <!--        <version>1.0-SNAPSHOT</version>-->
+    <version>1.0.2-SNAPSHOT</version>
     <description>utils for help dealing with GIS data</description>
     <name>GeoUtil</name>
 
@@ -216,7 +216,7 @@
                     <configuration>
                         <serverId>ossrh</serverId>
                         <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
 
@@ -251,7 +251,8 @@
                     <version>1.5</version>
                     <executions>
                         <execution>
-                            <id>sign-artifacts</id>
+<!--                            <id>sign-artifacts</id>-->
+                            <id>gpg</id>
                             <phase>verify</phase>
                             <goals>
                                 <goal>sign</goal>
