@@ -122,6 +122,8 @@ public class GeometryUtil {
     }
 
     /**
+     * fix geometry
+     * 修复几何对象
      *
      **/
     public static Geometry validate(Geometry geom) throws GeoException {
