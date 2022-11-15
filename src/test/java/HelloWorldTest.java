@@ -479,19 +479,6 @@ class HelloWorldTest {
 
 
     @Test
-    void parseShp1() throws GeoException {
-        File input = new File("." + File.separator + "data" + File.separator + "杭州市城市建筑" + File.separator + "12杭州市建筑.shp");
-        File output = new File("." + File.separator + "output" + File.separator + "12杭州市建筑.geojson");
-        FileUtil.del(output);
-
-        String geojsonStr = ShpUtil.parseShpAsString(input);
-
-        FileUtil.writeString(geojsonStr, output, CharsetUtil.UTF_8);
-    }
-
-
-
-    @Test
     void parseShp3() throws GeoException {
         File input = new File("." + File.separator + "data" + File.separator + "buildings" + File.separator + "buildings.shp");
         File output = new File("." + File.separator + "output" + File.separator + "buildings_fromShp.geojson");
