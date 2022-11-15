@@ -65,7 +65,7 @@ SimpleFeatureCollection simpleFeatureCollection = ShpUtil.parseShp(input);
 <dependency>
     <groupId>io.github.baozi926</groupId>
     <artifactId>geo-util</artifactId>
-    <version>1.1</version>
+    <version>1.1.1</version>
 </dependency>
 
 ```
