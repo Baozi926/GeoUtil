@@ -1,1 +1,9 @@
 language: java
+
+os: linux
+
+script: mvn test
+
+branches:
+  only:
+    - main
