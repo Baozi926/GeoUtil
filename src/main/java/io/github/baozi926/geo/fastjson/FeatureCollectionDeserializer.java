@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * @author 蔡惠民
- *
+ * 用于反序列化 FeatureCollection
  *
  */
 public class FeatureCollectionDeserializer extends JsonDeserializer<FeatureCollection> {

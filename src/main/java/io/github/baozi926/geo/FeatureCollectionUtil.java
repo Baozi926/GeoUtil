@@ -442,7 +442,7 @@ public class FeatureCollectionUtil {
      *
      * @param simpleFeatureCollection simpleFeatureCollection
      * @return simpleFeatureCollection
-     * @author caihuimin
+     *
      */
     public static SimpleFeatureCollection copy(SimpleFeatureCollection simpleFeatureCollection) {
 
@@ -469,7 +469,7 @@ public class FeatureCollectionUtil {
      *
      * @param featureCollection featureCollection
      * @return simpleFeatureCollection
-     * @author caihuimin
+     *
      */
     public static SimpleFeatureCollection removeNullGeometryItem(SimpleFeatureCollection featureCollection) {
 
@@ -506,7 +506,7 @@ public class FeatureCollectionUtil {
      * @param featureCollection geojson的字符串
      * @return FeatureCollection
      * @throws GeoException GeoException
-     * @author caihuimin
+     *
      */
     public static FeatureCollection validate(FeatureCollection featureCollection) throws GeoException {
 

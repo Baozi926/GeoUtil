@@ -31,6 +31,11 @@ import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 
+/**
+ * 用于序列化 Geometry
+ * @author  caihuimin
+ *
+ * */
 public class GeometryAsGeoJSONSerializer extends JsonSerializer<Geometry> {
     public GeometryAsGeoJSONSerializer() {
     }

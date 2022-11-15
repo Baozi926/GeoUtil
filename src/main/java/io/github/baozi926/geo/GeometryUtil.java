@@ -60,8 +60,8 @@ public class GeometryUtil {
      * 判断几何对象是不是合格的
      *
      * @param geometry 几何对象
-     * @return is valid ?
-     * @author caihuimin
+     * @return is valid
+     *
      */
     public Boolean isValid(Geometry geometry) {
         IsValidOp isValidOp = new IsValidOp(geometry);

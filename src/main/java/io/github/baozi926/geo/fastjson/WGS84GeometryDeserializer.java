@@ -10,6 +10,8 @@ import org.locationtech.jts.geom.*;
 import java.io.IOException;
 
 /**
+ * 用于反序列化Geometry，为了方便，srid会设成4326（WGS84）
+ *
  * @author 蔡惠民
  */
 public class WGS84GeometryDeserializer extends JsonDeserializer<Geometry> {

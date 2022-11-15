@@ -135,7 +135,7 @@ public class GeoJsonUtil {
      * @return geojson string
      * @throws GeoException    see in msg
      * @throws SchemaException SchemaException
-     * @author caihuimin
+     *
      */
     public static String mergeByField(String geojsonStr, String mergeField, String mergeFieldType, Boolean forceMergeField2NumberIfCan) throws GeoException, SchemaException {
 
@@ -175,7 +175,7 @@ public class GeoJsonUtil {
      * @return geojson string
      * @throws GeoException    see in msg
      * @throws SchemaException 读取schema 失败
-     * @author caihuimin
+     *
      */
     public static String mergeByField(String geojsonStr, String mergeField) throws GeoException, SchemaException {
 
@@ -186,7 +186,7 @@ public class GeoJsonUtil {
      * 获取集合类型对应的 Multi类型，例如 输入Point，得到MultiPoint
      *
      * @param geometryType 几何类型
-     * @author caihuimin
+     *
      */
     static String getMultiGeometryType(String geometryType) {
         if (CharSequenceUtil.startWith(geometryType, "Multi")) {
@@ -214,7 +214,7 @@ public class GeoJsonUtil {
      * @param geojsonStr geojson 的字符串
      * @return geojson string
      * @throws GeoException see in msg
-     * @author caihuimin
+     *
      */
     public static String merge(String geojsonStr) throws GeoException {
 
@@ -247,7 +247,7 @@ public class GeoJsonUtil {
      * @param decimals          decimals
      * @return geojson string
      * @throws GeoException see in msg
-     * @author caihuimin
+     *
      */
     public static String toString(FeatureCollection featureCollection, int decimals) throws GeoException {
         //如果是空值，就返回一个空的featureCollection
@@ -282,7 +282,7 @@ public class GeoJsonUtil {
      * @param geojsonString geojson的字符串
      * @return geojson string
      * @throws GeoException see in msg
-     * @author caihuimin
+     *
      */
     public static String validate(String geojsonString) throws GeoException {
         FeatureCollection featureCollection = fromJson(geojsonString);
@@ -297,7 +297,7 @@ public class GeoJsonUtil {
      * @param featureCollection featureCollection
      * @return geojson string
      * @throws GeoException GeoException
-     * @author caihuimin
+     *
      */
     public static String validate(FeatureCollection featureCollection) throws GeoException {
         FeatureCollection validateFeatures = FeatureCollectionUtil.validate(featureCollection);
@@ -350,7 +350,7 @@ public class GeoJsonUtil {
      * @param geojsonStr geojson的字符串
      * @return SimpleFeatureCollection
      * @throws GeoException GeoException
-     * @author caihuimin
+     *
      */
     public static SimpleFeatureCollection fromJsonAsSimpleFeatureCollection(String geojsonStr) throws GeoException {
         return fromJsonAsSimpleFeatureCollection(geojsonStr, GeoConstants.GEOJSON_COORDINATES_ACCURACY);
@@ -363,7 +363,7 @@ public class GeoJsonUtil {
      * @param decimals   decimals
      * @return SimpleFeatureCollection
      * @throws GeoException GeoException
-     * @author caihuimin
+     *
      */
     public static SimpleFeatureCollection fromJsonAsSimpleFeatureCollection(String geojsonStr, int decimals) throws GeoException {
 
@@ -400,7 +400,7 @@ public class GeoJsonUtil {
      * @param geojsonStr geojson的字符串
      * @return geojson string
      * @throws GeoException see in msg
-     * @author caihuimin
+     *
      */
     public static String removeNullGeometryItem(String geojsonStr) throws GeoException {
 

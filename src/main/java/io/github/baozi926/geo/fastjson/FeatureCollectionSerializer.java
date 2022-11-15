@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  * @author 蔡惠民
- *
+ * 用于序列化 FeatureCollection
  */
 public class FeatureCollectionSerializer extends JsonSerializer<FeatureCollection> {
 
