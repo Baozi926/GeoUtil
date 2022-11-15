@@ -1,8 +1,4 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
+//用于覆盖源码
 package org.geotools.geojson.feature;
 
 import org.geotools.data.crs.ForceCoordinateSystemFeatureResults;
