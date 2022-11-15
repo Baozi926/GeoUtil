@@ -1,6 +1,8 @@
-# GeoUtil
 
+[![Build Status](https://travis-ci.org/srishanbhattarai/geoutils.svg?branch=master)](https://travis-ci.org/srishanbhattarai/geoutils)
 [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://Baozi926.github.io/GeoUtil/javadoc/)
+
+# GeoUtil
 
 * 对geotools进行了封装，比直接用geotools要更好用,不用担心版本兼容问题
 * 用的是27.1 版本的geotool，比起老一些的版本会少很多问题。
