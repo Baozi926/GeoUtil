@@ -1,5 +1,3 @@
-
-[![Build Status](https://travis-ci.org/srishanbhattarai/geoutils.svg?branch=master)](https://travis-ci.org/srishanbhattarai/geoutils)
 [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://Baozi926.github.io/GeoUtil/javadoc/)
 
 # GeoUtil
