@@ -50,8 +50,17 @@ String geojsonStr = ShpUtil.parseShpAs(input);
 
 ```
 
+# maven地址
 
+``` 
 
+<dependency>
+    <groupId>io.github.baozi926</groupId>
+    <artifactId>geo-util</artifactId>
+    <version>1.1</version>
+</dependency>
+
+```
 
 
 
