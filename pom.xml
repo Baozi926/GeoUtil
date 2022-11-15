@@ -8,7 +8,7 @@
     <groupId>io.github.baozi926</groupId>
     <!--        <version>1.0-SNAPSHOT</version>-->
     <version>1.2-SNAPSHOT</version>
-    <description>utils for help dealing with spatial data</description>
+    <description>utils for help dealing with spatial data, such as geojson, shp</description>
     <name>GeoUtil</name>
 
     <properties>
