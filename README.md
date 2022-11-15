@@ -54,7 +54,9 @@ String geojsonStr = ShpUtil.parseShpAs(input);
 
 ##
 ```
+mvn versions:set -DnewVersion=1.0.5
 mvn clean javadoc:jar deploy -P release
+
 
 
 ```
