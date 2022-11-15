@@ -52,7 +52,7 @@ File input = new File("." + File.separator + "data" + File.separator + "杭州�
 //将shpfile读取成geojson string
 String geojsonStr = ShpUtil.parseShpAsString(input);
 //将shpfile读取成SimpleFeatureCollection,便于进行其他处理
-String geojsonStr = ShpUtil.parseShpAs(input);
+SimpleFeatureCollection simpleFeatureCollection = ShpUtil.parseShp(input);
 
 ```
 
