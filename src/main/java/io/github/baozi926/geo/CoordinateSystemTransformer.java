@@ -498,11 +498,11 @@ public class CoordinateSystemTransformer {
 
     /**
      * outOfChina
+     * 判断是否在国内，不在国内则不做偏移
      *
-     * @param lng
-     * @param lat
+     * @param lng longitude
+     * @param lat latitude
      * @return {boolean}
-     * @描述: 判断是否在国内，不在国内则不做偏移
      */
     private static boolean outOfChina(Double lng, Double lat) {
         return (lng < 72.004 || lng > 137.8347) || (lat < 0.8293 || lat > 55.8271);
@@ -526,11 +526,10 @@ public class CoordinateSystemTransformer {
      * 转换featureCollection的坐标系
      * transform the coordinate system of the featureCollection
      *
-     * @param simpleFeatureCollection     input
-     * @param inputCRS  inputCRS
-     * @param outputCRS outputCRS
+     * @param simpleFeatureCollection input
+     * @param inputCRS                inputCRS
+     * @param outputCRS               outputCRS
      * @return SimpleFeatureCollection
-     *
      */
     public static SimpleFeatureCollection transform(SimpleFeatureCollection simpleFeatureCollection, String inputCRS, String outputCRS) {
 
