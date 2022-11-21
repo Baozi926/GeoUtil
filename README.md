@@ -1,6 +1,6 @@
 [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://Baozi926.github.io/GeoUtil/javadoc/)
 [![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fbaozi926%2Fgeo-util%2Fmaven-metadata.xml)](https://mvnrepository.com/artifact/io.github.baozi926/geo-util)
-[![License](http://img.shields.io/:license-MIT-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![License](http://img.shields.io/:license-MIT-brightgreen.svg)](http://www.opensource.org/licenses/mit-license.php)
 
 # GeoUtil
 
