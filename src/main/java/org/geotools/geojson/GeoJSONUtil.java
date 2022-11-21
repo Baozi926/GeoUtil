@@ -5,7 +5,8 @@
 
 package org.geotools.geojson;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.geotools.util.Converters;
 import org.json.simple.JSONObject;
@@ -125,10 +126,18 @@ public class GeoJSONUtil {
     }
 
     public static StringBuilder array(String key, Object value, StringBuilder sb) {
-        Gson gson = new Gson();
 
-        String json = gson.toJson(value);
-        return string(key, sb).append(":").append(json);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String json = mapper.writeValueAsString(value);
+
+            return string(key, sb).append(":").append(json);
+        } catch (JsonProcessingException e) {
+            return string(key, sb).append(":").append(value);
+        }
+
+
     }
 
     public static StringBuilder nul(StringBuilder sb) {

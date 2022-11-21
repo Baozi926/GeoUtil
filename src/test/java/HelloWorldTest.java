@@ -492,6 +492,20 @@ class HelloWorldTest {
     }
 
 
+
+    @Test
+    void testNestedArrayProperties() throws GeoException {
+        File input = new File("." + File.separator + "data" + File.separator + "testNestedArrayProperties.geojson");
+        File output = new File("." + File.separator + "output" + File.separator + "testNestedArrayProperties_result.geojson");
+        FileUtil.del(output);
+
+        String geojsonStr = GeoJsonUtil.removeNullGeometryItem(FileUtil.readString(input, CharsetUtil.UTF_8));
+
+        FileUtil.writeString(geojsonStr, output, CharsetUtil.UTF_8);
+
+
+    }
+
     @Test
     void parseShp4() throws Exception {
         File input = new File("." + File.separator + "data" + File.separator + "buildings" + File.separator + "buildings.shp");
