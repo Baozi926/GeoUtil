@@ -8,7 +8,7 @@ mvn clean javadoc:jar deploy -P release
 mvn clean javadoc:jar
 
 //部署到release
-mvn release:clean release:prepare  -DskipTests
-mvn release:perform  -DskipTests
+mvn release:clean release:prepare -DskipTests
+mvn release:perform -DskipTests
 
 ```
