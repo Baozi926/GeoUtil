@@ -284,6 +284,7 @@
                         <useReleaseProfile>false</useReleaseProfile>
                         <releaseProfiles>release</releaseProfiles>
                         <goals>deploy</goals>
+                        <arguments>-DskipTests</arguments>
                     </configuration>
                 </plugin>
 
