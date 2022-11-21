@@ -1,6 +1,11 @@
-//用于覆盖源码
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package org.geotools.geojson.feature;
 
+import cn.hutool.core.util.BooleanUtil;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geojson.DelegatingHandler;
@@ -87,9 +92,13 @@ public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
 
     public boolean endArray() throws ParseException, IOException {
         if (this.delegate instanceof ArrayHandler) {
-            super.endArray();
-            this.values.add(((ArrayHandler) this.delegate).getValue());
-            this.delegate = NULL;
+            Boolean end = super.endArray();
+            if (BooleanUtil.isTrue(end)) {
+                this.values.add(((ArrayHandler) this.delegate).getValue());
+                this.delegate = NULL;
+                return super.endArray();
+            }
+            return true;
         }
 
         return super.endArray();

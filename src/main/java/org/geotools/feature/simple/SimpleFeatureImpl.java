@@ -1,4 +1,8 @@
-//用于覆盖源码
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package org.geotools.feature.simple;
 
 import org.geotools.feature.GeometryAttributeImpl;
