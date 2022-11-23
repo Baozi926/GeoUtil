@@ -227,16 +227,18 @@ public class FeatureCollectionUtil {
         int id = 0;
 
         for (Map.Entry<Object, List<Geometry>> entry : mergeMap.entrySet()) {
-
-            Geometry geometry = GeometryUtil.union(entry.getValue());
-            if (geometry != null) {
-                SimpleFeatureBuilder featureBuilder = new SimpleFeatureBuilder(type);
-                featureBuilder.add(geometry);
-                SimpleFeature feature = featureBuilder.buildFeature(String.valueOf(id));
-                feature.setAttribute(mergeField, entry.getKey());
-                features.add(feature);
-                id++;
+            if (entry.getValue() != null && !entry.getValue().isEmpty()) {
+                Geometry geometry = GeometryUtil.union(entry.getValue());
+                if (geometry != null && BooleanUtil.isFalse(geometry.isEmpty())) {
+                    SimpleFeatureBuilder featureBuilder = new SimpleFeatureBuilder(type);
+                    featureBuilder.add(geometry);
+                    SimpleFeature feature = featureBuilder.buildFeature(String.valueOf(id));
+                    feature.setAttribute(mergeField, entry.getKey());
+                    features.add(feature);
+                    id++;
+                }
             }
+
 
         }
 
@@ -442,7 +444,6 @@ public class FeatureCollectionUtil {
      *
      * @param simpleFeatureCollection simpleFeatureCollection
      * @return simpleFeatureCollection
-     *
      */
     public static SimpleFeatureCollection copy(SimpleFeatureCollection simpleFeatureCollection) {
 
@@ -469,7 +470,6 @@ public class FeatureCollectionUtil {
      *
      * @param featureCollection featureCollection
      * @return simpleFeatureCollection
-     *
      */
     public static SimpleFeatureCollection removeNullGeometryItem(SimpleFeatureCollection featureCollection) {
 
@@ -506,7 +506,6 @@ public class FeatureCollectionUtil {
      * @param featureCollection geojson的字符串
      * @return FeatureCollection
      * @throws GeoException GeoException
-     *
      */
     public static FeatureCollection validate(FeatureCollection featureCollection) throws GeoException {
 
