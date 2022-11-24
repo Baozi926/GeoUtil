@@ -1,7 +1,9 @@
 package io.github.baozi926.geo;
 
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
+import io.github.baozi926.geo.exception.GeoException;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.collection.ListFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureCollection;
@@ -517,7 +519,7 @@ public class CoordinateSystemTransformer {
      * @param outputCRS outputCRS
      * @return SimpleFeatureCollection
      */
-    public static SimpleFeatureCollection transform(FeatureCollection input, String inputCRS, String outputCRS) {
+    public static SimpleFeatureCollection transform(FeatureCollection input, String inputCRS, String outputCRS) throws GeoException {
         return transform(DataUtilities.collection(input), inputCRS, outputCRS);
     }
 
@@ -531,7 +533,25 @@ public class CoordinateSystemTransformer {
      * @param outputCRS               outputCRS
      * @return SimpleFeatureCollection
      */
-    public static SimpleFeatureCollection transform(SimpleFeatureCollection simpleFeatureCollection, String inputCRS, String outputCRS) {
+    public static SimpleFeatureCollection transform(SimpleFeatureCollection simpleFeatureCollection, String inputCRS, String outputCRS) throws GeoException {
+
+        Boolean inputCRSValid = false;
+
+        Boolean outputCRSValid = false;
+
+        for (String crs : GeoConstants.CRS) {
+            if (CharSequenceUtil.equals(crs, inputCRS)) {
+                inputCRSValid = true;
+            }
+            if (CharSequenceUtil.equals(crs, outputCRS)) {
+                outputCRSValid = true;
+            }
+        }
+
+        if (BooleanUtil.isFalse(inputCRSValid) && BooleanUtil.isFalse(outputCRSValid)) {
+            throw new GeoException("inputCRS or outputCRS is invalid");
+        }
+
 
         if (StrUtil.isEmpty(inputCRS) || StrUtil.isEmpty(outputCRS)) {
             return simpleFeatureCollection;

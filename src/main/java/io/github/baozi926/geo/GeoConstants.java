@@ -16,4 +16,9 @@ public class GeoConstants {
     public static final String WGS84 = "WGS84";
     public static final String BD09 = "BD09";
 
+
+    public static final String[] CRS = new String[]{
+            GCJ02, WGS84, BD09
+    };
+
 }
