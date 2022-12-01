@@ -1,0 +1,1 @@
+/opt/hostedtoolcache/Java_Adopt_jdk/8.0.352-8/x64/jre/../bin/javadoc -J-Xmx1024m @options @packages
