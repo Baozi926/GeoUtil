@@ -31,7 +31,7 @@ public class GeometryUtil {
     /**
      * 将featureType转换成 SimpleFeatureType
      *
-     * @param featureType  featureType
+     * @param featureType featureType
      * @return SimpleFeatureType
      */
     public static SimpleFeatureType featureTypeToSimpleFeatureType(FeatureType featureType) {
@@ -61,7 +61,6 @@ public class GeometryUtil {
      *
      * @param geometry 几何对象
      * @return is valid
-     *
      */
     public Boolean isValid(Geometry geometry) {
         IsValidOp isValidOp = new IsValidOp(geometry);
@@ -71,7 +70,8 @@ public class GeometryUtil {
     /**
      * 融合
      * 例如，输入是多个polygon，输出是一个MultiPolygon
-     * @param  geometries 几何对象
+     *
+     * @param geometries 几何对象
      * @return geometry
      */
     public static Geometry union(Collection<Geometry> geometries) {
@@ -151,6 +151,9 @@ public class GeometryUtil {
             return geom; // In my case, I only care about polygon / multipolygon geometries
         }
     }
+
+
+
 
 
 }
