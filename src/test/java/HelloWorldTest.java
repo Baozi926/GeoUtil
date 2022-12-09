@@ -61,6 +61,25 @@ class HelloWorldTest {
     }
 
     @Test
+    void readGeojson2() throws GeoException {
+
+        File input = new File("." + File.separator + "data" + File.separator + "testTerrainData.geojson");
+
+        String geojsonStr = FileUtil.readString(input, CharsetUtil.UTF_8);
+
+        SimpleFeatureCollection simpleFeatureCollection = GeoJsonUtil.fromJsonAsSimpleFeatureCollection(geojsonStr, 7);
+
+
+        Assertions.assertTrue(simpleFeatureCollection.size() > 0);
+
+        File output = new File("." + File.separator + "output" + File.separator + "testTerrainData_Result.geojson");
+        FileUtil.del(output);
+
+        FileUtil.writeString(GeoJsonUtil.toString(simpleFeatureCollection), output, CharsetUtil.CHARSET_UTF_8);
+
+    }
+
+    @Test
     void mergeByField() throws Exception {
 
 
@@ -490,7 +509,6 @@ class HelloWorldTest {
 
         FileUtil.writeString(GeoJsonUtil.toString(featureCollection), output, CharsetUtil.UTF_8);
     }
-
 
 
     @Test

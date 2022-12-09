@@ -23,56 +23,52 @@ public class ArrayHandler extends HandlerBase implements IContentHandler<List<Ob
 
     Integer level = -1;
 
+    Boolean isStartArray = false;
+
+    List<Object> target = null;
+
     public ArrayHandler() {
         this.level = -1;
     }
 
     public boolean startArray() throws ParseException, IOException {
         this.level++;
+        this.isStartArray = true;
         //只赋值一次
         if (this.values == null) {
             this.values = new ArrayList();
         }
+
+        target = this.values;
+
+        for (Integer i = 0; i < this.level; i++) {
+
+            if (target.size() > 0) {
+
+
+                if (NumberUtil.equals(this.level - 1, i)) {
+
+                    List<Object> newStartArray = new ArrayList();
+                    target.add(newStartArray);
+                    target = newStartArray;
+                } else {
+                    Object lastChild = target.get(target.size() - 1);
+
+                    target = (List<Object>) lastChild;
+
+                }
+
+            } else {
+                target.add(new ArrayList());
+                target = (List<Object>) target.get(0);
+            }
+        }
+
         return true;
     }
 
     public boolean primitive(Object value) throws ParseException, IOException {
-        if (this.values != null) {
-
-            List<Object> target = this.values;
-
-
-            for (Integer i = this.level; i > 0; i--) {
-
-                if (target.size() > 0) {
-//                    if(i)
-                    if (NumberUtil.equals(i, 1)) {
-                        Object lastChild = target.get(target.size() - 1);
-
-                        if (lastChild instanceof ArrayList) {
-                            List<Object> lastChildArray = (List<Object>) lastChild;
-
-                            lastChildArray.add(new ArrayList<>());
-
-                            target = (List<Object>) lastChildArray.get(lastChildArray.size() - 1);
-                        } else {
-                            target.add(new ArrayList());
-                            target = (List<Object>) target.get(target.size() - 1);
-                        }
-
-
-                    } else {
-                        target = (List<Object>) target.get(target.size() - 1);
-                    }
-
-
-                } else {
-                    target.add(new ArrayList());
-                    target = (List<Object>) target.get(0);
-                }
-            }
-
-
+        if (this.values != null && target != null) {
             target.add(value);
             return true;
         } else {
@@ -81,6 +77,7 @@ public class ArrayHandler extends HandlerBase implements IContentHandler<List<Ob
     }
 
     public boolean endArray() throws ParseException, IOException {
+        this.isStartArray = false;
         this.level--;
         if (this.level < 0) {
             this.list = this.values;
