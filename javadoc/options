@@ -15,11 +15,11 @@
 -docencoding
 'UTF-8'
 -doctitle
-'GeoUtil 1.1.3-SNAPSHOT API'
+'GeoUtil 1.1.3 API'
 -linkoffline
 'https://docs.oracle.com/javase/8/docs/api' '/home/runner/work/GeoUtil/GeoUtil/target/javadoc-bundle-options'
 -notree
 -use
 -version
 -windowtitle
-'GeoUtil 1.1.3-SNAPSHOT API'
+'GeoUtil 1.1.3 API'
