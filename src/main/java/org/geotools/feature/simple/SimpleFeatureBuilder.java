@@ -24,7 +24,11 @@ import org.opengis.feature.type.Name;
 
 import java.util.*;
 import java.util.logging.Logger;
-
+/**
+ *
+ * @exclude
+ *
+ * */
 public class SimpleFeatureBuilder extends FeatureBuilder<FeatureType, Feature> {
     static Logger LOGGER = Logging.getLogger(SimpleFeatureBuilder.class);
     SimpleFeatureType featureType;

@@ -22,6 +22,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+/**
+ *
+ * @exclude
+ *
+ * */
 public class GeoJSONUtil {
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     public static final TimeZone TIME_ZONE = TimeZone.getTimeZone("GMT");

@@ -27,7 +27,11 @@ import org.opengis.geometry.BoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import java.util.*;
-
+/**
+ *
+ * @exclude
+ *
+ * */
 public class SimpleFeatureImpl implements SimpleFeature {
     protected FeatureId id;
     protected SimpleFeatureType featureType;

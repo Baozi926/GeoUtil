@@ -19,7 +19,11 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
-
+/**
+ *
+ * @exclude
+ *
+ * */
 public class FeatureTypeHandler extends DelegatingHandler<SimpleFeatureType> implements IContentHandler<SimpleFeatureType> {
     SimpleFeatureType featureType;
     private boolean inFeatures = false;

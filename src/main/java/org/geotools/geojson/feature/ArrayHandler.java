@@ -16,7 +16,11 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @exclude
+ *
+ * */
 public class ArrayHandler extends HandlerBase implements IContentHandler<List<Object>> {
     List<Object> values;
     List<Object> list;

@@ -21,7 +21,11 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @exclude
+ *
+ * */
 public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
     private int fid;
     private String separator;

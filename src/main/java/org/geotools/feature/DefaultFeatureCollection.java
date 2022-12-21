@@ -28,7 +28,11 @@ import org.opengis.util.ProgressListener;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
-
+/**
+ *
+ * @exclude
+ *
+ * */
 public class DefaultFeatureCollection implements SimpleFeatureCollection, Collection<SimpleFeature> {
     protected static Logger LOGGER = Logging.getLogger(DefaultFeatureCollection.class);
     private SortedMap<String, SimpleFeature> contents;
