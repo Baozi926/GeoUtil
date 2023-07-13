@@ -19,6 +19,7 @@ import java.util.List;
 /**
  *
  * @exclude
+ * @hide
  *
  * */
 public class ArrayHandler extends HandlerBase implements IContentHandler<List<Object>> {

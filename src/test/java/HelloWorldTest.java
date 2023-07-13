@@ -5,6 +5,7 @@ import io.github.baozi926.geo.*;
 import io.github.baozi926.geo.exception.GeoException;
 import org.geotools.data.collection.ListFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureCollection;
+import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
@@ -46,6 +47,9 @@ class HelloWorldTest {
     }
 
 
+    /**
+     * 测试读取geojson
+     */
     @Test
     void readGeojson() throws GeoException {
 
@@ -79,6 +83,9 @@ class HelloWorldTest {
 
     }
 
+    /**
+     * 测试根据字段融合
+     */
     @Test
     void mergeByField() throws Exception {
 
@@ -732,6 +739,70 @@ class HelloWorldTest {
         Geometry geometry = GeoJsonUtil.geoJson2Geometry(geojson);
 
         GeoJsonUtil.geometry2GeoJson(geometry);
+
+
+    }
+
+    @Test
+    void testIntersect() throws GeoException, IOException {
+        File input = new File("." + File.separator + "data" + File.separator + "tiesiyuan_test.geojson");
+
+
+        String geojsonStr = FileUtil.readString(input, CharsetUtil.UTF_8);
+        SimpleFeatureCollection featureCollection = GeoJsonUtil.fromJsonAsSimpleFeatureCollection(geojsonStr);
+
+        SimpleFeatureIterator featureIterator = featureCollection.features();
+
+        String geojson = " {\n" +
+                "        \"type\": \"Polygon\",\n" +
+                "        \"coordinates\": [\n" +
+                "          [\n" +
+                "            [\n" +
+                "              96.6796875,\n" +
+                "              52.482780222078226\n" +
+                "            ],\n" +
+                "            [\n" +
+                "              90,\n" +
+                "              32.54681317351514\n" +
+                "            ],\n" +
+                "            [\n" +
+                "              109.6875,\n" +
+                "              26.745610382199022\n" +
+                "            ],\n" +
+                "            [\n" +
+                "              100.1953125,\n" +
+                "              40.44694705960048\n" +
+                "            ],\n" +
+                "            [\n" +
+                "              101.6015625,\n" +
+                "              44.33956524809713\n" +
+                "            ],\n" +
+                "            [\n" +
+                "              96.6796875,\n" +
+                "              52.482780222078226\n" +
+                "            ]\n" +
+                "          ]\n" +
+                "        ]\n" +
+                "      }";
+
+
+        Geometry geometryToCal = GeoJsonUtil.geoJson2Geometry(geojson);
+
+
+
+
+        while (featureIterator.hasNext()) {
+
+            SimpleFeature feature = featureIterator.next();
+
+            Geometry geometry = (Geometry) feature.getDefaultGeometry();
+
+
+            Boolean intersect = geometry.intersects(geometryToCal);
+
+            System.out.println(intersect);
+
+        }
 
 
     }
